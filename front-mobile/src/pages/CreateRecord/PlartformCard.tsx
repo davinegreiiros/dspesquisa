@@ -1,30 +1,30 @@
 import React from 'react';
-import { FontAwesome5 as Icon} from '@expo/vector-icons';
 import { Text, StyleSheet } from 'react-native';
-import { GamePlatform } from './types';
-import { RectButton } from 'react-native-gesture-handler';
-
+import { GamePlatform } from './types'
+import { RectButton, TextInput } from 'react-native-gesture-handler';
+import { FontAwesome5 as Icon } from '@expo/vector-icons';
 
 type Props = {
     platform: GamePlatform;
-    onChange:(platform: GamePlatform) => void;
+    onChange: (platform: GamePlatform) => void;
     icon: string;
     activePlatform?: GamePlatform;
 }
 
-const PlatformCard = ({platform, onChange, icon, activePlatform}: Props) => {
-  const isActive = platform === activePlatform;
-  const backgroundColor = isActive ? '#fad7c8' : '#FFF';
-  const textColor = isActive ? '#ED7947' : '#9E9E9E';
+const PlatformCard = ({ platform, onChange, icon, activePlatform }: Props) => {
 
-    return(
-        <RectButton 
-        style={[styles.platformCard, { backgroundColor }]} 
-        onPress={() => onChange(platform)}
-        >
-         <Icon name={icon} size={60} color={textColor} />
-         <Text style={[styles.platformCardText, {color: textColor}]}>
-             {platform === 'PLAYSTATION' ? 'PS' : platform}
+    const isActive = platform === activePlatform;
+    const backgroundColor = isActive ? '#fad7c8' : '#fff';
+    const textColor = isActive ? '#ed7947' : "#9e9e9e";
+
+    return (
+        <RectButton
+         style={[styles.platformCard, { backgroundColor }]} 
+         onPress={() => onChange(platform)}>
+         <Icon name={icon} size={60} color={textColor}/>
+         <Text
+          style={[styles.platformCardText, {color:textColor}]}>
+              {platform === 'PLAYSTATION' ? 'PS' : platform}
          </Text>
         </RectButton>
     )
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
       alignItems: 'center'
     },
     platformCardText: {
-      marginTop: 40,
+      marginTop: 10,
       color: '#9E9E9E',
       fontSize: 24,
       fontFamily: "Play_700Bold",

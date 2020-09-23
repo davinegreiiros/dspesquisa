@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FontAwesome5 as Icon} from '@expo/vector-icons';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { Text, StyleSheet, View, Alert } from 'react-native';
+import { RectButton, TextInput } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
 import axios from 'axios';
 
@@ -25,22 +26,42 @@ const mapSelectValues = (games: Game[]) =>{
 }
 
 const CreateRecord = () => {
-  
+  const[name, setName] = useState('');
+  const[age , setAge] = useState('');
   const [platform, setPlatform] = useState<GamePlatform>();
   const [selectedGame, setSelectedGame]  = useState('');
   const [allGames, setAllGames] = useState<Game[]>([]);
+  const [filteredGames, setFilteredGames] = useState<Game[]>([]);
 
   const handleChangePlatform = (selectedPlatform: GamePlatform ) =>{
-     setPlatform(selectedPlatform);
+     setPlatform(selectedPlatform)
+     const gameByPlatform = allGames.filter(
+       game => game.platform === selectedPlatform
+     )
+     setFilteredGames(gameByPlatform);
+  }
+
+  const handleSubmit = () => {
+    const payload = {name, age, gameID: selectedGame};
+
+    axios.post(`$BASE_URL/records`, payload).
+    then(() => {
+      Alert.alert('Dados salvos com sucesso!');
+      setName('');
+      setAge('');
+      setSelectedGame('');
+      setPlatform(undefined);
+    })
+    .catch(() => Alert.alert('Erro ao salvar os dados!'))
   }
 
   useEffect(() => {
     axios.get(`${BASE_URL}/games`).
-    then(response =>{
+    then(response => {
       const selectValues = mapSelectValues(response.data);
-      console.log(selectValues)
       setAllGames(selectValues);
     }) 
+    .catch(() => Alert.alert('Erro ao listar os jogos!'))
   }, [])
 
     return(
@@ -90,6 +111,11 @@ const CreateRecord = () => {
             return <Icon name="chevron-down" c olor="#9E9E9E" size={25} />
           }}
           />
+          <View style={styles.footer}>
+            <RectButton style={styles.button} onPress={handleSubmit}> 
+                <Text style={styles.buttonText}>Salvar</Text>
+            </RectButton>
+          </View>
         </View>
         </>
     )

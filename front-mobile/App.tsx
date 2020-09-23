@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import { AppLoading } from 'expo';
 import {
   useFonts,
@@ -18,7 +18,7 @@ export default function App() {
 
   if(!fontsLoaded){
    return <AppLoading />
-  }else {
+  }else {   
     return (
       <View style={styles.container}>
         <Routes />

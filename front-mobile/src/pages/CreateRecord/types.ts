@@ -1,11 +1,9 @@
-export type GamePlatform = 'XBOX' | 'PC' | 'PLAYSTATION';
-
-
+export type GamePlatform = 'XBOX'|'PC'|'PLAYSTATION';
 
 export type Game = {
-    id: number;
-    title: string;
-    platform: GamePlatform;
-    label: string;
-    value: number;
-} 
+        id: number;
+        title: string;
+        platform: GamePlatform;
+        label: string;
+        value: number;
+}
