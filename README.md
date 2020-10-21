@@ -10,6 +10,7 @@ O DEVSUPERIOR é um evento online com muito conteúdo prático, desafios e hacks
 O projeto desenvolvido foi uma aplicação chamada DSPesquisa. O ojetivo do DSPESQUISA é mostrar dados cadastrado em porcentagem em graficos com quantas pessoas jogam as plataformas atuais,seja PC, XBOX ou PLAYSTATION. O DSPESQUISA possui uma página web que mostra todos os dados cadastrados. Foi utilizado HTML, CSS e Java Script nesse projeto.<br>
 <br>
 
+Confira o resultado clicando na imagem: 
 [<img src='https://github.com/davinegreiiros/dspesquisa/blob/master/front-web/src/assets/gamer.svg' height='110'>](https://sds1-davi.netlify.app/)
 
 
